@@ -1,11 +1,10 @@
-import { Schema, model, connect, connection } from 'mongoose';
-import { UsersInterface } from './types';
+import { connect, connection } from 'mongoose';
 //const mongoose = require ('mongoose')
 //import mongoose from 'mongoose';
 
-const connectionString = 'mongodb://localhost:27017/Prueba_1'
-async function run() {
-    await connect(connectionString)
+//const connectionString = 'mongodb://localhost:27017/Prueba_1'
+export async function run() {
+    await connect('mongodb://localhost:27017/Prueba_1')
     .then(()=>{
         console.log('Database connected!!')
     }) .catch((err)=>{
@@ -13,8 +12,10 @@ async function run() {
     });
 
 }
-run();
-
+export function endConn() {
+    connection.close()
+};
+/*
 const usersSchema = new Schema<UsersInterface>({
     id: Number,
     name: String,
@@ -23,7 +24,7 @@ const usersSchema = new Schema<UsersInterface>({
     comment: String
 })
 
-const users = model<UsersInterface>('user',usersSchema)
+const usersofDB = model<UsersInterface>('user',usersSchema)*/
 
 /*const user1 = new users({
     id: 6,
@@ -38,7 +39,11 @@ user1.save().then((result)=>{
     console.error(err)
     });*/
 
-users.find({}).then((result)=> {
+/*
+usersofDB.find({}).then((result:any)=> {
+    run();
     console.log(result)
     connection.close()
 })
+
+export default usersofDB;*/

@@ -1,4 +1,4 @@
-import { newUserInfo } from "../types"
+import { newUserInfo } from "../modelos/types_d_users"
 
 const parseName = (nameFromRequest:any):string =>{
     if(!isString(nameFromRequest)){

@@ -1,8 +1,11 @@
 import express from 'express'
 import userRouter from './routes/user'
+import experienciasRouter from './routes/experiencias'
+import { run } from './database/mongo_conn'
 
 const app = express()
 app.use(express.json())
+run();
 
 const PORT = 3000;
 
@@ -12,6 +15,7 @@ app.get('/ping', (_req , res) => {
 })
 
 app.use('/api/user',userRouter)
+app.use('/api/experiencias',experienciasRouter)
 
 app.listen(PORT, () => {
     console.log('el servidor esta escuchando en el puerto '+ PORT)
