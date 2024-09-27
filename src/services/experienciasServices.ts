@@ -8,7 +8,13 @@ export const getEntries = {
         return await experienciasofDB.findById(id);
     },
     findUserById: async(id:string)=>{
-        return await experienciasofDB.findById(id).populate('user');
+        return await experienciasofDB.findById(id).populate('owner').populate('participants');
+    },
+    addParticipant: async(idExp:string,idPart:string)=>{
+        return await experienciasofDB.findByIdAndUpdate(idExp,{$addToSet:{participants:idPart}});
+    },
+    delParticipant: async(idExp:string,idPart:string)=>{
+        return await experienciasofDB.findByIdAndUpdate(idExp,{$pull:{participants:idPart}});
     },
     create: async(entry:object)=>{
         return await experienciasofDB.create(entry);
