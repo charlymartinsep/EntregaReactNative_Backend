@@ -20,6 +20,11 @@ router.post('/', async(req, res) => {
     return res.json(data);
 })
 
+router.post('/addExperiencias/:idUser/:idExp', async(req, res) => {
+    const data = await userServices.getEntries.addExperiencies(req.params.idUser,req.params.idExp)
+    return res.json(data);
+})
+
 router.put('/:id', async(req, res) => {
     const data = await userServices.getEntries.update(req.params.id,req.body)
     return res.json(data);
@@ -27,6 +32,11 @@ router.put('/:id', async(req, res) => {
 
 router.delete('/:id', async(req, res) => {
     const data = await userServices.getEntries.delete(req.params.id)
+    return res.json(data);
+})
+
+router.delete('/delParticipant/:idUser/:idExp', async(req, res) => {
+    const data = await userServices.getEntries.delExperiencies(req.params.idUser,req.params.idExp)
     return res.json(data);
 })
 

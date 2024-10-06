@@ -8,6 +8,12 @@ export const getEntries = {
     findById: async(id:string)=>{
         return await usersofDB.findById(id);
     },
+    addExperiencies: async(idUser:string,idExp:string)=>{
+        return await usersofDB.findByIdAndUpdate(idUser,{$addToSet:{experiencies:idExp}});
+    },
+    delExperiencies: async(idUser:string,idExp:string)=>{
+        return await usersofDB.findByIdAndDelete(idUser,{$pull:{experiencies:idExp}});
+    },
     create: async(entry:object)=>{
         return await usersofDB.create(entry);
     },
